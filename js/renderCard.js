@@ -7,7 +7,7 @@ const renderCard = (data, type) => {
     listCard.textContent = '';
 
 
-    Promise.all(data.map(async (item) => {
+    Promise.all(data.filter(item => item.poster_path).map(async (item) => {
         const mediaType = item.media_type ?? type;
         const video = await getVideo(item.id, mediaType);
         const key = video.results[0]?.key;
@@ -27,9 +27,7 @@ const renderCard = (data, type) => {
         const img = document.createElement('img');
         img.className = 'other-films__img';
         img.alt = `постер ${item.title || item.name}`;
-        img.src = item.poster_path ? 
-        `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${item.poster_path}` :
-        'img/no-poster.jpg';
+        img.src = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${item.poster_path}`;
 
         link.append(img);
         card.append(link);
