@@ -15,7 +15,6 @@ export function addNewPage() {
       window.addEventListener('scroll', addNewPage);
     }, 1500);
     page = page + 1;
-    console.log(page);
   }
 }
 

@@ -27,7 +27,12 @@ const menuLink = () => {
         }
 
         if (target.classList.contains('get-nav__link_top-tv')) {
-          getTop('tv').then((data) => renderCard(data.results, false, 'tv'));
+          getTop('tv')
+            .then((data) => renderCard(data.results, false, 'tv'))
+            .then((data) => {
+              window.removeEventListener('scroll', addNewPage);
+              scroll('top', 'tv');
+            });
         }
 
         if (target.classList.contains('get-nav__link_popular-tv')) {
@@ -40,11 +45,21 @@ const menuLink = () => {
         }
 
         if (target.classList.contains('get-nav__link_top-movies')) {
-          getTop('movie').then((data) => renderCard(data.results, false, 'movie'));
+          getTop('movie')
+            .then((data) => renderCard(data.results, false, 'movie'))
+            .then((data) => {
+              window.removeEventListener('scroll', addNewPage);
+              scroll('top', 'movie');
+            });
         }
 
         if (target.classList.contains('get-nav__link_triends')) {
-          getTrends().then((data) => renderCard(data.results, false));
+          getTrends()
+            .then((data) => renderCard(data.results, false))
+            .then((data) => {
+              window.removeEventListener('scroll', addNewPage);
+              scroll();
+            });
         }
       }
     });
