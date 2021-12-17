@@ -1,13 +1,16 @@
-import { getVideo } from "./services.js";
+import { getVideo } from './services.js';
 
 const listCard = document.querySelector('.other-films__list');
 
-const renderCard = (data, type) => {
-
+const renderCard = (data, scroll = false, type) => {
+  if (!scroll) {
     listCard.textContent = '';
+  }
 
-
-    Promise.all(data.filter(item => item.poster_path).map(async (item) => {
+  Promise.all(
+    data
+      .filter((item) => item.poster_path)
+      .map(async (item) => {
         const mediaType = item.media_type ?? type;
         const video = await getVideo(item.id, mediaType);
         const key = video.results[0]?.key;
@@ -16,12 +19,12 @@ const renderCard = (data, type) => {
 
         const link = document.createElement('a');
         if (key) {
-            link.href = `https://youtu.be/${key}`;
+          link.href = `https://youtu.be/${key}`;
         }
         link.className = 'other-films__link tube';
 
         if (item.vote_average) {
-            link.dataset.rating = item.vote_average;
+          link.dataset.rating = item.vote_average;
         }
 
         const img = document.createElement('img');
@@ -33,7 +36,8 @@ const renderCard = (data, type) => {
         card.append(link);
 
         return card;
-    })).then(cards => listCard.append(...cards));
+      }),
+  ).then((cards) => listCard.append(...cards));
 };
 
 export default renderCard;
