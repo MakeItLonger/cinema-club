@@ -7,7 +7,7 @@ let type;
 export function addNewPage() {
   if (
     window.pageYOffset + document.documentElement.clientHeight >=
-    document.documentElement.scrollHeight - 800
+    document.documentElement.scrollHeight - 1000
   ) {
     renderPlus(page, func || null, type || null);
     window.removeEventListener('scroll', addNewPage);

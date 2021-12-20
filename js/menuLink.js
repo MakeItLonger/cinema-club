@@ -5,6 +5,7 @@ import { scroll, addNewPage } from './scroll.js';
 const title = document.querySelector('.other-films__title');
 const filmWeek = document.querySelector('.film-week');
 const getNav = document.querySelectorAll('.get-nav');
+const searchInput = document.querySelector('.header__search-input');
 
 const menuLink = () => {
   getNav.forEach((nav) => {
@@ -13,6 +14,8 @@ const menuLink = () => {
 
       if (target) {
         e.preventDefault();
+        window.scrollTo(0, 0);
+        searchInput.value = '';
 
         filmWeek.style.display = 'none';
         title.textContent = e.target.textContent;

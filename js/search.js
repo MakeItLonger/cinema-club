@@ -25,11 +25,14 @@ const search = () => {
         }
       })
       .then(() => {
-        filmWeek.remove();
         title.textContent = 'Результат поиска';
       })
       .catch((err) => {
         title.textContent = err;
+      })
+      .finally(() => {
+        filmWeek.remove();
+        window.scrollTo(0, 0);
       });
   });
 };
