@@ -19,7 +19,7 @@ export function addNewPage() {
 }
 
 export const scroll = (funcNew, typeNew) => {
-  if (func) {
+  if (funcNew) {
     func = funcNew;
     type = typeNew;
   }
