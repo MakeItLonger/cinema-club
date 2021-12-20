@@ -9,7 +9,7 @@
     background-color: var(--color-bg);
     padding: 80px 30px 30px;
     transition: right 0.5s, width 0.5s;
-    z-index: 99;
+    z-index: 100;
 }
 
 .navigation_active {
